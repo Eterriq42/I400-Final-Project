@@ -10,7 +10,7 @@ export default function Index() {
     <View style={styles.container}>
       <Text style={styles.welcome}>Welcome to JetQuest!</Text>
       <View style={styles.intro}>
-        <Text>Ever Wanted to Go on a Nice Vacation?</Text>
+        <Text>Ever Wanted to Go on a Nice All Inclusive Vacation?</Text>
         <Text>Here at JetQuest, you can find your best choice</Text>
         <Text>Including cheaper Resorts and Flights</Text>
       </View>
