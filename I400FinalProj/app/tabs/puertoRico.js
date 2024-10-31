@@ -1,8 +1,12 @@
 import { Text, View, StyleSheet, Button } from "react-native";
-import resorts from "../resorts";  // Ensure the path to resorts.js is correct
+import resorts from "../resorts";
+import { useCart } from "./cart";
+import { useNavigation } from "expo-router";
 
 export default function PuertoRico() {
-    const prResorts = resorts.puertoRico.resorts;  // This variable holds the resorts for Puerto Rico
+    const { addToCart } = useCart();
+    const navigation = useNavigation();
+    const prResorts = resorts.puertoRico.resorts;
 
     return (
         <View style={styles.container}>
@@ -12,7 +16,10 @@ export default function PuertoRico() {
                     <Text style={styles.resortName}>{resort.name}</Text>
                     <Text>{resort.description}</Text>
                     <Text style={styles.price}>{resort.price}</Text>
-                    <Button title="Add to Cart" />
+                    <Button title="Add to Cart" onPress={() => {
+                        addToCart({ type: "resort", ...resort })
+                        navigation.navigate("tabs/flights")
+                    }} />
                 </View>
             ))}
         </View>
