@@ -13,22 +13,22 @@ export default function Index() {
         <Text style={styles.title}>Select a Country!</Text>
 
         <View style={styles.countryCont}>
-          <Text>{resorts.mexico.name}</Text>
+          <Text style={styles.name}>{resorts.mexico.name}</Text>
           <Button title={`Go to ${resorts.mexico.name}`} onPress={() => {
             navigation.navigate("tabs/mexico");
           }} />
         </View>
 
         <View style={styles.countryCont}>
-          <Text>Dominican Republic</Text>
-          <Button title="Go to Dominican Republic" onPress={() => {
+          <Text style={styles.name}>Dominican Republic</Text>
+          <Button title={`Go to ${resorts.dominicanRepublic.name}`} onPress={() => {
             navigation.navigate("tabs/dominicanRepublic");
           }} />
         </View>
 
         <View style={styles.countryCont}>
-          <Text>Puerto Rico</Text>
-          <Button title="Go to Puerto Rico" onPress={() => {
+          <Text style={styles.name}>Puerto Rico</Text>
+          <Button title={`Go to ${resorts.puertoRico.name}`} onPress={() => {
             navigation.navigate("tabs/puertoRico");
           }} />
         </View>
@@ -66,5 +66,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 100,
   },
+  name: {
+    marginBottom: 10,
+  }
 
 })

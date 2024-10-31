@@ -19,7 +19,7 @@ const resorts = {
                 description: "Luxury resort by the beach with a wide range of amenities, 9 outdoor pools and very close to La Isla Shopping Mall.",
                 price: "For 2 travelers and 1 room with flight included for 7 night stay, taxes & fees, $1,731."
             }
-        ]
+        ],
     },
 
     dominicanRepublic: {
@@ -35,7 +35,7 @@ const resorts = {
                 description: "A 4.5-star resort on the golden shores of Puerto Plata In the Dominican Republic. With a wide range of amenties.",
                 price: "For 2 travelers and 1 room with flight included for 7 night stay, taxes & fees, $1,167."
             }
-        ]
+        ],
     },
 
     puertoRico: {
@@ -51,8 +51,7 @@ const resorts = {
                 description: "A 4-star resort in the district of San Juan. Has many amenities to choose from and many family-friendly.",
                 price: "For 2 travelers and 1 room with flight included for 7 night stay, taxes & fees, $3,444."
             }
-        ]
-
+        ],
     },
 };
 
