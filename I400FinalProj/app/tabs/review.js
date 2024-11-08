@@ -6,6 +6,19 @@ import { useCart } from "./cart";
 
 export default function Review() {
     const { cart } = useCart();
+    const calculateTotal = () => {
+        return cart.reduce((total, item) => {
+            if (item.type === "resort") {
+                return total + item.price;
+            }
+            if (item.type === "airline") {
+                return total + item.addOn;
+            }
+            return total;
+        }, 0);
+    };
+
+    const totalPrice = calculateTotal();
 
 
     return (
@@ -21,15 +34,20 @@ export default function Review() {
                             <>
                                 <Text style={styles.itemName}>Resort: {item.name}</Text>
                                 <Text>{item.description}</Text>
-                                <Text style={styles.price}>Price: {item.price}</Text>
+                                <Text style={styles.price}>Price: ${item.price}</Text>
                             </>
                         ) : (
                             <Text style={styles.itemName}>Airline: {item.airline}</Text>
                         )}
-                        <Text>{item.addOn ? `Add-On: ${item.addOn}` : ""}</Text>
+                        <Text>{item.addOn ? `Add-On: +${item.addOn}` : ""}</Text>
                     </View>
+
                 )}
+
             />
+            <Text style={styles.totalText}>Your Total will be: ${totalPrice.toFixed(2)}</Text>
+            <Button title="Submit Order"/>
+
 
 
         </View>
@@ -61,5 +79,11 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 16,
         color: "#636363",
+    },
+    totalText: {
+        fontSize: 18,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginTop: 10,
     },
 });
