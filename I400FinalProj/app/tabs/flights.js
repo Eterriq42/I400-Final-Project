@@ -5,10 +5,10 @@ import { useNavigation } from "expo-router";
 
 
 const flights = [
-    { airline: "Southwest Airlines", addOn: "+ $0" },
-    { airline: "American Airlines", addOn: "+ $20" },
-    { airline: "Delta", addOn: "+ $30" },
-    { airline: "JetBlue", addOn: "+ $50" },
+    { airline: "Southwest Airlines", addOn: 0 },
+    { airline: "American Airlines", addOn: 20 },
+    { airline: "Delta", addOn: 30 },
+    { airline: "JetBlue", addOn: 50 },
 ];
 
 export default function Flights() {
@@ -21,7 +21,7 @@ export default function Flights() {
             {flights.map((flight, index) => (
                 <View key={index} style={styles.flightBox}>
                     <Text style={styles.airline}>{flight.airline}</Text>
-                    <Text>{flight.addOn}</Text>
+                    <Text>${flight.addOn}</Text>
                     <Button
                         title="Select"
                         onPress={() => {

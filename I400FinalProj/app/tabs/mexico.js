@@ -2,24 +2,38 @@ import { Text, View, StyleSheet, Button } from "react-native";
 import resorts from "../resorts";
 import { useCart } from "./cart";
 import { useNavigation } from "expo-router";
+import { useState, useEffect } from "react";
+import getAllResortWeather from "./weather";
 
 export default function Mexico() {
   const { addToCart } = useCart();
   const navigation = useNavigation();
-  const mexResorts = resorts.mexico.resorts;
+  const [resortWeatherData, setResortWeatherData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const weatherData = await getAllResortWeather();
+      setResortWeatherData(weatherData.mexico);
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Resorts in {resorts.mexico.name}</Text>
-      {mexResorts.map((resort, index) => (
+      {resortWeatherData.map((resort, index) => (
         <View key={index} style={styles.resortBox}>
           <Text style={styles.resortName}>{resort.name}</Text>
           <Text>{resort.description}</Text>
-          <Text style={styles.price}>{resort.price}</Text>
-          <Button title="Add to Cart" onPress={() => {
-            addToCart({ type: "resort", ...resort })
-            navigation.navigate("tabs/flights")
-          }} />
+          <Text style={styles.price}>${resort.price}</Text>
+          {resort.temperature && (
+            <Text>{resort.temperature}°F</Text>
+          )}
+          <Button
+            title="Add to Cart"
+            onPress={() => {
+              addToCart({ type: "resort", ...resort });
+              navigation.navigate("tabs/flights");
+            }}
+          />
         </View>
       ))}
     </View>
