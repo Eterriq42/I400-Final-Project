@@ -9,8 +9,12 @@ export function CartProvider({ children }) {
     setCart((prevCart) => [...prevCart, resort]);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
