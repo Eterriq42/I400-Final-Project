@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, ScrollView } from "react-native";
 import resorts from "../resorts";
 import { useCart } from "./cart";
 import { useNavigation } from "expo-router";
@@ -19,23 +19,25 @@ export default function Mexico() {
 
   return (
     <View style={styles.container}>
-      {resortWeatherData.map((resort, index) => (
-        <View key={index} style={styles.resortBox}>
-          <Text style={styles.resortName}>{resort.name}</Text>
-          <Text>{resort.description}</Text>
-          <Text style={styles.price}>${resort.price}</Text>
-          {resort.temperature && (
-            <Text>{resort.temperature}°F</Text>
-          )}
-          <Button
-            title="Add to Cart"
-            onPress={() => {
-              addToCart({ type: "resort", ...resort });
-              navigation.navigate("tabs/flights");
-            }}
-          />
-        </View>
-      ))}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {resortWeatherData.map((resort, index) => (
+          <View key={index} style={styles.resortBox}>
+            <Text style={styles.resortName}>{resort.name}</Text>
+            <Text>{resort.description}</Text>
+            <Text style={styles.price}>${resort.price}</Text>
+            {resort.temperature && (
+              <Text>{resort.temperature}°F</Text>
+            )}
+            <Button
+              title="Add to Cart"
+              onPress={() => {
+                addToCart({ type: "resort", ...resort });
+                navigation.navigate("tabs/flights");
+              }}
+            />
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -69,4 +71,7 @@ const styles = StyleSheet.create({
     color: "#636363",
     marginBottom: 10,
   },
+  scrollContent: {
+    paddingBottom: 20,
+  }
 });
